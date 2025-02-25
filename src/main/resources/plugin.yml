@@ -1,0 +1,15 @@
+name: PluginReloader
+version: '1.0-SNAPSHOT'
+main: com.cludivers.pluginReloader.PluginReloader
+api-version: '1.21'
+
+commands:
+  autoreload:
+    description: Toggle auto-reload on or off.
+    usage: /autoreload
+    permission: pluginwatcher.toggle
+
+permissions:
+  pluginwatcher.toggle:
+    description: Allows the user to toggle auto-reload.
+    default: op
