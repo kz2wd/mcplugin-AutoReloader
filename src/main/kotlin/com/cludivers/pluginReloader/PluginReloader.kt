@@ -44,25 +44,25 @@ class PluginReloader : JavaPlugin() {
             if (fileTimestamps.containsKey(file)) {
                 if (fileTimestamps[file] != lastModified) {
                     logger.info("Detected change in JAR file: ${file.name}")
-                    reloadServer()
-                    fileTimestamps[file] = lastModified // Update the timestamp
                     val broadcastTail =
                         Component.text(" modified").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false)
                     Bukkit.broadcast(
                         Component.text(file.name).color(NamedTextColor.WHITE).decorate(TextDecoration.BOLD)
                             .append(broadcastTail)
                     )
+                    reloadServer()
+                    fileTimestamps[file] = lastModified // Update the timestamp
                 }
             } else {
                 logger.info("Detected new JAR file: ${file.name}")
-                reloadServer()
-                fileTimestamps[file] = lastModified // Add the new file
                 val broadcastTail =
                     Component.text(" added").color(NamedTextColor.GREEN).decoration(TextDecoration.BOLD, false)
                 Bukkit.broadcast(
                     Component.text(file.name).color(NamedTextColor.WHITE).decorate(TextDecoration.BOLD)
                         .append(broadcastTail)
                 )
+                reloadServer()
+                fileTimestamps[file] = lastModified // Add the new file
             }
 
         }
